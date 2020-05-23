@@ -4,17 +4,20 @@
 
     <div class="intro">
 
-        {{ with .Site.Params.profilePic }} <img class="profile" src="{{ . }}"> {{ end }}
-
         <h1>{{ .Site.Title }}</h1>
 
         <h2>{{ markdownify .Site.Params.Description }}</h2>
+
+        <div style="border-style:double;">
+        <h3>Latest Posts</h3>
+        {{ range (.Paginator 5).Pages }} {{ partial "list-item" . }} {{ end }}
 
         {{ with .Content }}
             <div class="homepage-content text-justify">
                 {{ . }}
             </div>
         {{ end }}
+      </div>
     </div>
 
 </main>
